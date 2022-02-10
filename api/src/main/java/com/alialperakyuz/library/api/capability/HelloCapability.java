@@ -1,6 +1,7 @@
 package com.alialperakyuz.library.api.capability;
 
 import com.alialperakyuz.library.model.dto.UserDto;
+import com.alialperakyuz.library.model.jpa.User;
 import com.alialperakyuz.library.service.service.HelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("hello")
@@ -25,7 +28,7 @@ public class HelloCapability {
     }
 
     @GetMapping("/user/get/v1")
-    public String getUser() {
+    public List<User> getUser() {
         logger.debug("getUser servisi çağırıldı");
         UserDto userDto = new UserDto();
         userDto.setName("Alper");

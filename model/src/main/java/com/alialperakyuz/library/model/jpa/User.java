@@ -1,9 +1,18 @@
 package com.alialperakyuz.library.model.jpa;
 
+import com.alialperakyuz.library.model.dto.enums.Status;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 
 @Entity
+@Table(indexes = {
+        @Index(name = "uniqueIndex_id", columnList = "id", unique = true),
+        @Index(name = "uniqueIndex_username-mail", columnList = "username, mail", unique = true),
+        @Index(name = "uniqueIndex_username", columnList = "username", unique = true),
+        @Index(name = "uniqueIndex_mail", columnList = "mail", unique = true),
+})
 public class User implements Serializable {
 
     @Id
@@ -11,7 +20,15 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String surname;
+    @Column(unique = true, updatable = false,nullable = false)
     private String username;
+    @Column(unique = true,nullable = false)
+    private String mail;
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
+    @Column(updatable = false)
+    private OffsetDateTime createdDate;
+    private OffsetDateTime updateDate;
 
     @Override
     public String toString() {
@@ -20,7 +37,44 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", username='" + username + '\'' +
+                ", mail='" + mail + '\'' +
+                ", status=" + status +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
                 '}';
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
+    public OffsetDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(OffsetDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public OffsetDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(OffsetDateTime updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public Long getId() {

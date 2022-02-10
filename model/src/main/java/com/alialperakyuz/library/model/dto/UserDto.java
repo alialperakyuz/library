@@ -1,13 +1,32 @@
 package com.alialperakyuz.library.model.dto;
 
 import com.alialperakyuz.library.model.jpa.User;
+import com.sun.istack.NotNull;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {
+    @NotNull
+    @NotEmpty
     private String name;
+    @NotNull
+    @NotEmpty
     private String surname;
+    @NotNull
+    @NotEmpty
     private String username;
+    @NotNull
+    @NotEmpty
+    private String mail;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     public String getName() {
         return name;
@@ -38,6 +57,7 @@ public class UserDto implements Serializable {
         user.setUsername(this.username);
         user.setName(this.name);
         user.setSurname(this.surname);
+        user.setMail(this.mail);
         return user;
     }
 }

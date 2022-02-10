@@ -51,3 +51,4 @@ build/
 /api/.mvn/wrapper/maven-wrapper.jar
 /model/.mvn/wrapper/maven-wrapper.jar
 /service/.mvn/wrapper/maven-wrapper.jar
+*.log
